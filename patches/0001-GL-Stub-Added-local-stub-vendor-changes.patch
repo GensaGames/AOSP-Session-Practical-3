@@ -1,0 +1,64 @@
+From 122a640a21e7567827362921eaae9b975134635b Mon Sep 17 00:00:00 2001
+From: "Hennadii.Kasian" <Hennadii.Kasian@globallogic.com>
+Date: Thu, 6 Jun 2019 16:25:15 +0300
+Subject: [PATCH] [GL][Stub] - Added local stub vendor changes.
+
+Change-Id: Ibe3483bc7ea27ef9f13edb8f6823063cf3d4bf4c
+---
+ .../android/settings/SettingsActivity.java    | 33 +++++++++++++++++++
+ 1 file changed, 33 insertions(+)
+
+diff --git a/src/com/android/settings/SettingsActivity.java b/src/com/android/settings/SettingsActivity.java
+index 644bcee52b..5cb93ba432 100644
+--- a/src/com/android/settings/SettingsActivity.java
++++ b/src/com/android/settings/SettingsActivity.java
+@@ -77,6 +77,14 @@ import com.android.settingslib.utils.ThreadUtils;
+ import java.util.ArrayList;
+ import java.util.List;
+ 
++import android.graphics.Color;
++import android.widget.TextView;
++import android.view.ViewGroup;
++import android.view.ViewGroup.LayoutParams;
++import android.view.Gravity;
++import android.widget.Toast;
++import android.util.TypedValue;
++
+ public class SettingsActivity extends SettingsDrawerActivity
+         implements PreferenceManager.OnPreferenceTreeClickListener,
+         PreferenceFragment.OnPreferenceStartFragmentCallback,
+@@ -377,6 +385,31 @@ public class SettingsActivity extends SettingsDrawerActivity
+         if (DEBUG_TIMING) {
+             Log.d(LOG_TAG, "onCreate took " + (System.currentTimeMillis() - startTime) + " ms");
+         }
++
++        addVendorChanges();
++    }
++
++    private void addVendorChanges() {
++        Log.d(LOG_TAG, "addVendorChanges.");
++        Toast.makeText(getApplicationContext(),
++            "Adding Vendor Changes!", Toast.LENGTH_LONG).show();  
++
++        ((ViewGroup) findViewById(android.R.id.content)).addView(
++            getVendorStubView(), new ViewGroup.LayoutParams(
++                ViewGroup.LayoutParams.MATCH_PARENT, 
++                ViewGroup.LayoutParams.WRAP_CONTENT));
++    }
++
++    private View getVendorStubView() {
++        final TextView text = new TextView(SettingsActivity.this);
++        text.setText("Powered by Vendors!");
++        text.setPadding(40, 40, 40, 40);
++        text.setTextSize(TypedValue.COMPLEX_UNIT_SP, 32);
++
++        text.setTextColor(Color.WHITE);
++        text.setBackgroundColor(Color.RED);
++        text.setGravity(Gravity.CENTER);
++        return text;
+     }
+ 
+     @VisibleForTesting
+-- 
+2.17.1
+

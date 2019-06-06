@@ -1,0 +1,78 @@
+From 9b2304f8902816e2c092db8d23330545d38fbdf1 Mon Sep 17 00:00:00 2001
+From: "Hennadii.Kasian" <Hennadii.Kasian@globallogic.com>
+Date: Thu, 6 Jun 2019 17:03:59 +0300
+Subject: [PATCH] [GL][Stub][Link] - Adding new overlay configuration to the
+ vendor product. Adding new Overlay.
+
+---
+ device-vendor.mk                              |  3 ++
+ .../base/core/res/res/values/config.xml       | 45 +++++++++++++++++++
+ 2 files changed, 48 insertions(+)
+ create mode 100644 overlay/frameworks/base/core/res/res/values/config.xml
+
+diff --git a/device-vendor.mk b/device-vendor.mk
+index 31f5c3a..dc1215d 100644
+--- a/device-vendor.mk
++++ b/device-vendor.mk
+@@ -17,3 +17,6 @@
+ LOCAL_STEM := device-partial.mk
+ 
+ $(call inherit-product-if-exists, vendor/linaro/hikey960/hisilicon/$(LOCAL_STEM))
++
++LOCAL_PRODUCT_DIRECTORY := vendor/globallogic/product/hikey960/
++PRODUCT_PACKAGE_OVERLAYS += ${LOCAL_PRODUCT_DIRECTORY}/overlay
+diff --git a/overlay/frameworks/base/core/res/res/values/config.xml b/overlay/frameworks/base/core/res/res/values/config.xml
+new file mode 100644
+index 0000000..4e879a8
+--- /dev/null
++++ b/overlay/frameworks/base/core/res/res/values/config.xml
+@@ -0,0 +1,45 @@
++<?xml version="1.0" encoding="utf-8"?>
++<resources>
++<!--
++/*
++** Copyright 2009, The Android Open Source Project
++**
++** Licensed under the Apache License, Version 2.0 (the "License");
++** you may not use this file except in compliance with the License.
++** You may obtain a copy of the License at
++**
++**     http://www.apache.org/licenses/LICENSE-2.0
++**
++** Unless required by applicable law or agreed to in writing, software
++** distributed under the License is distributed on an "AS IS" BASIS,
++** WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
++** See the License for the specific language governing permissions and
++** limitations under the License.
++*/
++-->
++
++<!-- These resources are around just to allow their values to be customized
++     for different hardware and product builds.  Do not translate.
++
++     NOTE: The naming convention is "config_camelCaseValue". Some legacy
++     entries do not follow the convention, but all new entries should. -->
++    <!-- Whether action menu items should be displayed in ALLCAPS or not.
++         Defaults to true. If this is not appropriate for specific locales
++         it should be disabled in that locale's resources. -->
++    <bool name="config_actionMenuItemAllCaps">false</bool>
++
++    <!-- Controls whether system buttons use all caps for text -->
++    <bool name="config_buttonTextAllCaps">false</bool>
++
++
++    <!-- Control the behavior when the user long presses the power button.
++            0 - Nothing
++            1 - Global actions menu
++            2 - Power off (with confirmation)
++            3 - Power off (without confirmation)
++            4 - Go to voice assist
++    -->
++    <integer name="config_longPressOnPowerBehavior">2</integer>
++
++    
++</resources>
+\ No newline at end of file
+-- 
+2.17.1
+

@@ -1,0 +1,27 @@
+From a9fd9189d485d7fd68617c52ece824c56f9944b7 Mon Sep 17 00:00:00 2001
+From: "Hennadii.Kasian" <Hennadii.Kasian@globallogic.com>
+Date: Thu, 6 Jun 2019 16:27:06 +0300
+Subject: [PATCH] [GL][Stub] - Linking sample Vendor changes with Device. No
+ changes in Device module.
+
+Change-Id: I34e81367ea8cb3a6f3039669fc7370f73dbffc2a
+---
+ hikey960/device-hikey960.mk | 5 +++++
+ 1 file changed, 5 insertions(+)
+
+diff --git a/hikey960/device-hikey960.mk b/hikey960/device-hikey960.mk
+index 2695698e..beaa66f2 100644
+--- a/hikey960/device-hikey960.mk
++++ b/hikey960/device-hikey960.mk
+@@ -97,3 +97,8 @@ ifneq ($(TARGET_NO_RECOVERY),true)
+ PRODUCT_COPY_FILES += \
+ 	device/linaro/hikey/init.recovery.common.rc:recovery/root/init.recovery.hikey960.rc
+ endif
++
++##########################################################
++# New GlobalLogic changes starts here
++
++$(call inherit-product, vendor/globallogic/product/hikey960/device-vendor.mk)
+-- 
+2.17.1
+

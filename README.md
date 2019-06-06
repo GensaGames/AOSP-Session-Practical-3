@@ -12,7 +12,7 @@ mkdir -p $ANDROID_BUILD_TOP/vendor/globallogic/product && \
 cp -R $ANDROID_BUILD_TOP/vendor/linaro/hikey960 $ANDROID_BUILD_TOP/vendor/globallogic/product
 ```
 
-2. To add new vendor working folder, you need to add link to the `device-vendor.mk` from the `/vendor/globallogic-new/product/hikey960/` in device mk file `device/linaro/hikey/hikey960` `device-hikey960.mk`. By using following command. Check patch source in case you need to add this manually. 
+2. To add new vendor working folder, you need to add link to the `device-vendor.mk` from the `/vendor/globallogic/product/hikey960/` in device mk file `device/linaro/hikey/hikey960` `device-hikey960.mk`. By using following command. Check patch source in case you need to add this manually. 
 
 ```
 cd $ANDROID_BUILD_TOP/device/linaro/hikey && \
@@ -26,7 +26,7 @@ cd -
 make -j8
 ```
 
-4. Once you have working directory, you can use `vendor/globallogic/` to add new modules, libraries, etc. All that source, should be linked with main vendor mk file in `/vendor/globallogic-new/product/hikey960/` `device-vendor.mk`. First step, will be to add Overlay settings, to existing Android configuration. [See AOSP documentation for more details](https://source.android.com/setup/develop/new-device#use-resource-overlays). Check patch source in case you need to add this manually. 
+4. Once you have working directory, you can use `vendor/globallogic/` to add new modules, libraries, etc. All that source, should be linked with main vendor mk file in `/vendor/globallogic/product/hikey960/` `device-vendor.mk`. First step, will be to add Overlay settings, to existing Android configuration. [See AOSP documentation for more details](https://source.android.com/setup/develop/new-device#use-resource-overlays). Check patch source in case you need to add this manually. 
 
 ```
 cd $ANDROID_BUILD_TOP/vendor/globallogic/product/hikey960 && \
@@ -34,7 +34,7 @@ git apply 0001-GL-Stub-Link-Adding-new-overlay-configuration-to-the.patch && \
 cd -
 ```
 
-5. Now you can check build again, and flash new build. In this overlay we have changed few options, one of them it's behavior of long press power button. In previous build by long press power button you should expect global button selection. After changes above, it should be changed to power off dialog with confirmation. 
+5. Now you can check build again, and flash new build. In this overlay we have changed few options, one of them it's behavior of long press power button. In previous build by long press power button you should expect global button selection. After changes above, it should be changed to power off dialog with confirmation. Make and flash build to validate new changes. 
 
 ```
 make -j8 && \
@@ -65,3 +65,6 @@ adb shell am start -n com.android.settings/.Settings
 ```
 
 9. If you have done everything right, you should have new changes in Settings with red notification panel. Now most interesting part, try to experiment with default application and their configuration. Try to change other values in System configuration from the file `frameworks/base/core/res/res/values/config.xml`.
+
+
+Thank You. 

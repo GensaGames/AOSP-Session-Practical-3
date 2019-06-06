@@ -1,6 +1,9 @@
 # AOSP-Session-Practical-3
 
 
+This is practical task during AOSP Pro Camp, in order to add local directory to work with AOSP project without problems, managment configuration, changes and efficient builds. Project contains patches with necessary changes, and source(clear) vendor folder, just for ex. 
+
+
 
 1. For setting up environment to work with AOSP as new vendor, we need to setup working directory. Create directory, by copying it from the existing default linaro venor changes. Make sure, u set up terminal with building scripts. 
 
@@ -46,7 +49,7 @@ cd $ANDROID_BUILD_TOP/packages/apps/Settings && \
 git apply 0001-GL-Stub-Added-local-stub-vendor-changes.patch
 ```
 
-7. In order to apply changes in this case (of high level application changes or Android framework) we don't need to make complete rebuild. First of all launch board, and run next commands. 
+7. In order to apply changes in this case (of high level application changes or Android framework) we don't need to make complete rebuild. To start with, launch board and run next commands. 
 
 ```
 adb root && adb remount
